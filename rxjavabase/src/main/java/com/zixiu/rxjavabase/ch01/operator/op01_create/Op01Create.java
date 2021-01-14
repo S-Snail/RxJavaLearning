@@ -1,4 +1,4 @@
-package com.zixiu.rxjavabase.ch01.operator;
+package com.zixiu.rxjavabase.ch01.operator.op01_create;
 
 import android.annotation.SuppressLint;
 
@@ -29,7 +29,7 @@ import io.reactivex.functions.Consumer;
  * 3.延迟创建：defer(),timer(),interval(),intervalRange(),range(),rangeLong()
  * </p>
  */
-public class OpCreate {
+public class Op01Create {
 
     public static class Data{
         private Integer i;
