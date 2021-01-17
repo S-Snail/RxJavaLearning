@@ -78,48 +78,48 @@ public class Op02Transform {
          * 应用场景：
          *  无序的将被观察者发送的整个事件序列进行转换
          */
-//        Observable.create(new ObservableOnSubscribe<Integer>() {
-//            @Override
-//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-//                emitter.onNext(1);
-//                emitter.onNext(2);
-//                emitter.onNext(3);
-//                emitter.onComplete();
-//            }
-//        }).flatMap(new Function<Integer, ObservableSource<String>>() {
-//            @NonNull
-//            @Override
-//            public ObservableSource<String> apply(@NonNull Integer integer) throws Exception {
-//                final List<String> newObservableList = new ArrayList<>();
-//                for (int i = 0; i < 3; i++) {
-//                    newObservableList.add("我是事件" + integer + "拆分后的子事件" + i);
-//                    //通过flatMap()中将被观察者发送的事件序列进行拆分，再将这个事件转换成一个新的发送三个String事件
-//                    //最终合并，再发送给观察者
-//                }
-//                System.out.println("拆分后发送");
-//                return Observable.fromIterable(newObservableList);
-//            }
-//        }).subscribe(new Observer<String>() {
-//            @Override
-//            public void onSubscribe(Disposable d) {
-//                System.out.println("flatMap() -> onSubscribe()");
-//            }
-//
-//            @Override
-//            public void onNext(String s) {
-//                System.out.println("flatMap() -> value = " + s);
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//                System.out.println("flatMap() -> onComplete()");
-//            }
-//        });
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+                emitter.onNext(1);
+                emitter.onNext(2);
+                emitter.onNext(3);
+                emitter.onComplete();
+            }
+        }).flatMap(new Function<Integer, ObservableSource<String>>() {
+            @NonNull
+            @Override
+            public ObservableSource<String> apply(@NonNull Integer integer) throws Exception {
+                final List<String> newObservableList = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    newObservableList.add("我是事件" + integer + "拆分后的子事件" + i);
+                    //通过flatMap()中将被观察者发送的事件序列进行拆分，再将这个事件转换成一个新的发送三个String事件
+                    //最终合并，再发送给观察者
+                }
+                System.out.println("拆分后发送");
+                return Observable.fromIterable(newObservableList);
+            }
+        }).subscribe(new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                System.out.println("flatMap() -> onSubscribe()");
+            }
+
+            @Override
+            public void onNext(String s) {
+                System.out.println("flatMap() -> value = " + s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                System.out.println("flatMap() -> onComplete()");
+            }
+        });
 
         /**
          * 2.3 ConcatMap()

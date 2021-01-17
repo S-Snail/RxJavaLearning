@@ -17,6 +17,8 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.plugins.RxJavaPlugins;
 
 /**
  * Author: Snail
@@ -45,6 +47,9 @@ public class Op01Create {
 
     @SuppressLint("CheckResult")
     public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InterruptedException {
+
+        testHook();
+
         /**
          * <p>
          *     1.1
@@ -466,5 +471,16 @@ public class Op01Create {
 //        CountDownLatch countDownLatch = new CountDownLatch(10);
 //        countDownLatch.await();
 
+    }
+
+    private static void testHook() {
+        RxJavaPlugins.setOnObservableAssembly(new Function<Observable, Observable>() {
+            @NonNull
+            @Override
+            public Observable apply(@NonNull Observable observable) throws Exception {
+                System.out.println("测试全局Hook，倒是有多少个地方调用到了Observable: " + observable);
+                return observable;
+            }
+        });
     }
 }
