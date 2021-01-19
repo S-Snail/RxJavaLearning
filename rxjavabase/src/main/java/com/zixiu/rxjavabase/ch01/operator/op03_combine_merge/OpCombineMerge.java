@@ -3,12 +3,14 @@ package com.zixiu.rxjavabase.ch01.operator.op03_combine_merge;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiConsumer;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -259,28 +261,28 @@ public class OpCombineMerge {
          *     与zip()的区别：zip() = 按个数合并，即1对1合并；CombineLatest() = 按时间合并，即在同一个时间点上合并
          * </p>
          */
-//        Observable.combineLatest(
-//                Observable.just(1L, 2L, 3L),//第一个发送事件的Observable
-//                Observable.intervalRange(0, 3, 1, 1, TimeUnit.SECONDS),
-//                new BiFunction<Long, Long, Long>() {
-//                    /**
-//                     *
-//                     * @param aLong {第一个Observable发送的最新的（最后的）一个数据}
-//                     * @param aLong2{第二个Observable发送的每一个数据}
-//                     */
-//                    @NonNull
-//                    @Override
-//                    public Long apply(@NonNull Long aLong, @NonNull Long aLong2) throws Exception {
-//                        System.out.println("combineLatest() -> 合并的数据是：" + aLong + " - " + aLong2);
-//                        return aLong + aLong2;
-//                    }
-//                }
-//        ).subscribe(new Consumer<Long>() {
-//            @Override
-//            public void accept(@NonNull Long aLong) throws Exception {
-//                System.out.println("合并的结果是:" + aLong);
-//            }
-//        });
+        Observable.combineLatest(
+                Observable.just(1L, 2L, 3L),//第一个发送事件的Observable
+                Observable.intervalRange(0, 3, 1, 1, TimeUnit.SECONDS),
+                new BiFunction<Long, Long, Long>() {
+                    /**
+                     *
+                     * @param aLong {第一个Observable发送的最新的（最后的）一个数据}
+                     * @param aLong2{第二个Observable发送的每一个数据}
+                     */
+                    @NonNull
+                    @Override
+                    public Long apply(@NonNull Long aLong, @NonNull Long aLong2) throws Exception {
+                        System.out.println("combineLatest() -> 合并的数据是：" + aLong + " - " + aLong2);
+                        return aLong + aLong2;
+                    }
+                }
+        ).subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(@NonNull Long aLong) throws Exception {
+                System.out.println("合并的结果是:" + aLong);
+            }
+        });
 
         /**
          * <p>
@@ -404,6 +406,9 @@ public class OpCombineMerge {
 //                        System.out.println("count() -> 发送事件数量：" + aLong);
 //                    }
 //                });
+
+
+
 
         CountDownLatch countDownLatch = new CountDownLatch(20);
         countDownLatch.await();
