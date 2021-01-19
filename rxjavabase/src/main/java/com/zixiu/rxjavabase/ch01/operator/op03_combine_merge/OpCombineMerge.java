@@ -1,12 +1,15 @@
 package com.zixiu.rxjavabase.ch01.operator.op03_combine_merge;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Author: Snail
@@ -125,6 +128,8 @@ public class OpCombineMerge {
 //
 //            }
 //        });
+//        CountDownLatch countDownLatch = new CountDownLatch(10);
+//        countDownLatch.await();
 
         /**
          * concatDelayError()/mergeDelayError()
@@ -132,6 +137,42 @@ public class OpCombineMerge {
          *      当其中一个被观察者触发onError(),则会马上终止其他被观察者继续发送事件，
          *      如果想要等所有的被观察者事件发送完毕再触发onError，则使用concatDelayError()/mergeDelayError()
          */
+//        Observable.concatArrayDelayError(
+//                Observable.create(new ObservableOnSubscribe<Integer>() {
+//                    @Override
+//                    public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+//                        emitter.onNext(0);
+//                        emitter.onNext(1);
+//                        emitter.onNext(2);
+//                        emitter.onNext(3);
+//                        emitter.onError(new RuntimeException());
+//                        emitter.onComplete();
+//                    }
+//                }),
+//                Observable.just(4,5,6)
+//        ).subscribe(new Observer<Integer>() {
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//                System.out.println("concatArrayDelayError() -> onSubscribe()");
+//            }
+//
+//            @Override
+//            public void onNext(Integer integer) {
+//                System.out.println("concatArrayDelayError() -> onNext()  -> value = " + integer);
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                System.out.println("concatArrayDelayError() -> onError()");
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//                System.out.println("concatArrayDelayError() -> onComplete()");
+//            }
+//        });
+
+
 
     }
 
