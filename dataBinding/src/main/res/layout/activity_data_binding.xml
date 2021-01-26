@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!--    入门    -->
+        <variable
+            name="userEntity"
+            type="com.zixiu.databinding.entity.UserEntity" />
+
+        <!--   DataBinding基本用法     -->
+        <variable
+            name="str"
+            type="String" />
+
+        <variable
+            name="age"
+            type="int" />
+
+        <variable
+            name="isBigger"
+            type="Boolean" />
+
+        <!--    引入一些高级变量，List,Map,数组等    -->
+        <import type="java.util.List" />
+
+        <import type="java.util.Map" />
+
+        <variable
+            name="list"
+            type="List&lt;String&gt;" />
+
+        <variable
+            name="map"
+            type="Map&lt;String,Object&gt;" />
+
+        <variable
+            name="array"
+            type="String[]" />
+
+        <!--    不同路径下，有两个相同名称的类，可以使用alias来区分    -->
+        <import type="com.zixiu.databinding.entity.UserEntity" />
+
+        <import
+            alias="UserEntity2"
+            type="com.zixiu.databinding.annotherEntity.UserEntity" />
+
+        <variable
+            name="userEntity1"
+            type="UserEntity" />
+
+        <variable
+            name="userEntity2"
+            type="UserEntity2" />
+
+        <!--    引入点击事件    -->
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+        <!--    点击事件-方法调用    -->
+        <variable
+            name="onClickHandler"
+            type="com.zixiu.databinding.ClickHandler" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--  入门  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ff0000"
+                android:gravity="center"
+                android:text="@{null ?? userEntity.lastName}"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#00ff00"
+                android:gravity="center"
+                android:text="@{String.valueOf(userEntity.age)}"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:visibility="@{isBigger?0:1}" />
+
+        </LinearLayout>
+
+        <!--  基本用法  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ff0000"
+                android:text="@{str}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#00ff00"
+                android:text="@{String.valueOf(age)}" />
+
+        </LinearLayout>
+
+        <!--    引入一些高级变量    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{list[0]}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{list.get(1)}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{map[`key0`]}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{map.get(`key1`)}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{array[0]}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{array[1]}" />
+
+        </LinearLayout>
+
+        <!--    别名    -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`原始名称:` + userEntity1.name  + `\t年龄：` + userEntity1.age}"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`别名：` + userEntity2.className + `\t 年级：` + userEntity2.grade + `\t 年龄：` + userEntity2.age}"
+            android:visibility="gone" />
+
+        <!--  include  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <!--      app:name,要跟被include的variable的name一致      -->
+            <include
+                layout="@layout/contact"
+                app:user="@{userEntity}" />
+
+        </LinearLayout>
+
+        <!--    OnClickListener    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_click_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{clickListener}"
+                android:text="点击1" />
+
+            <Button
+                android:id="@+id/btn_click_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{clickListener}"
+                android:text="点击2" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{onClickHandler::onClickHandler}"
+                android:text="onClickHandler" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

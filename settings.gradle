@@ -1,3 +1,4 @@
+include ':dataBinding'
 include ':rxjavabase'
 include ':app'
 rootProject.name = "RxJavaLearning"
