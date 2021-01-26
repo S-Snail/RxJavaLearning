@@ -1,12 +1,14 @@
 package com.zixiu.databinding;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.zixiu.databinding.databinding.ActivityDataBindingBinding;
 import com.zixiu.databinding.entity.UserEntity;
+import com.zixiu.databinding.recyclerviewactivity.RecyclerViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +50,9 @@ public class DataBindingActivity extends Activity implements View.OnClickListene
         binding.setClickListener(this);
 
         binding.setOnClickHandler(new ClickHandler());
+
+        //跳转到RecyclerViewActivity
+        startActivity(new Intent(this, RecyclerViewActivity.class));
     }
 
     @Override

@@ -3,7 +3,8 @@
     package="com.zixiu.databinding">
 
     <application>
-        <activity android:name=".DataBindingActivity"></activity>
+        <activity android:name=".recyclerviewactivity.RecyclerViewActivity"/>
+        <activity android:name=".DataBindingActivity" />
     </application>
 
 </manifest>
