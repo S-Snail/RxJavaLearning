@@ -62,6 +62,19 @@
             name="onClickHandler"
             type="com.zixiu.databinding.ClickHandler" />
 
+        <!--    数据对象    -->
+        <variable
+            name="doubleBindEntity"
+            type="com.zixiu.databinding.entity.DoubleBindEntity" />
+
+        <variable
+            name="doubleBindEntity2"
+            type="com.zixiu.databinding.entity.DoubleBindEntity2" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <LinearLayout
@@ -213,6 +226,25 @@
                 android:text="onClickHandler" />
 
         </LinearLayout>
+
+        <!--    数据对象    -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:background="#ff0000"
+            android:text="@{doubleBindEntity2.userName}"
+            />
+
+        <Button
+            android:id="@+id/btn_base_observable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BaseObservable方式改变内容"
+            android:onClick="@{click}"
+            />
 
     </LinearLayout>
 

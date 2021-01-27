@@ -7,8 +7,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.zixiu.databinding.databinding.ActivityDataBindingBinding;
+import com.zixiu.databinding.entity.DoubleBindEntity;
+import com.zixiu.databinding.entity.DoubleBindEntity2;
 import com.zixiu.databinding.entity.UserEntity;
-import com.zixiu.databinding.recyclerviewactivity.RecyclerViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,9 @@ import java.util.Map;
 import androidx.databinding.DataBindingUtil;
 
 public class DataBindingActivity extends Activity implements View.OnClickListener {
+
+    DoubleBindEntity doubleBindEntity;
+    private DoubleBindEntity2 doubleBindEntity2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +55,21 @@ public class DataBindingActivity extends Activity implements View.OnClickListene
 
         binding.setOnClickHandler(new ClickHandler());
 
-        //跳转到RecyclerViewActivity
-        startActivity(new Intent(this, RecyclerViewActivity.class));
+        binding.setClick(this);
+
+//        //跳转到RecyclerViewActivity
+//        startActivity(new Intent(this, RecyclerViewActivity.class));
+
+
+//        doubleBindEntity = new DoubleBindEntity();
+//        binding.setDoubleBindEntity(doubleBindEntity);
+
+        doubleBindEntity2 = new DoubleBindEntity2();
+        doubleBindEntity2.userName.set("测试ObservableFiled");
+        binding.setDoubleBindEntity2(doubleBindEntity2);
+
+        //跳转到ObservableXX
+        startActivity(new Intent(this, ObservableActivity.class));
     }
 
     @Override
@@ -62,6 +79,10 @@ public class DataBindingActivity extends Activity implements View.OnClickListene
             Toast.makeText(this, "点击事件1", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.btn_click_2) {
             Toast.makeText(this, "点击事件2", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.btn_base_observable) {
+            Toast.makeText(this, "BaseObservable方式改变内容", Toast.LENGTH_SHORT).show();
+//            doubleBindEntity.setContent("改变后的内容");
+            doubleBindEntity2.userName.set("测试完成");
         }
     }
 }

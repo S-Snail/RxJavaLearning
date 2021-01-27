@@ -33,5 +33,9 @@ public class RecyclerViewActivity extends Activity {
         list.add(new TextItem("Title_01"));
         list.add(new TextItem("Title_02"));
         list.add(new TextItem("Title_03"));
+
+        list.add(new FruitItem("水果_4","https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg"));
+        list.add(new FruitItem("水果_5","https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg"));
+        list.add(new FruitItem("水果_6","https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg"));
     }
 }

@@ -16,10 +16,26 @@ public class FruitItem extends BaseObservable implements IBaseBindingAdatperItem
 
     private int picId;
     private String describe;
+    private String imageUrl;
 
     public FruitItem(int picId, String describe) {
         this.picId = picId;
         this.describe = describe;
+    }
+
+    public FruitItem(String describe, String imageUrl) {
+        this.describe = describe;
+        this.imageUrl = imageUrl;
+    }
+
+    @Bindable
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        notifyPropertyChanged(BR.imageUrl);
     }
 
     @Bindable
