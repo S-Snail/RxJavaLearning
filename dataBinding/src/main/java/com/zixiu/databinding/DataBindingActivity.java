@@ -10,6 +10,7 @@ import com.zixiu.databinding.databinding.ActivityDataBindingBinding;
 import com.zixiu.databinding.entity.DoubleBindEntity;
 import com.zixiu.databinding.entity.DoubleBindEntity2;
 import com.zixiu.databinding.entity.UserEntity;
+import com.zixiu.databinding.mvvm_demo.view.MvvmActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,7 +70,9 @@ public class DataBindingActivity extends Activity implements View.OnClickListene
         binding.setDoubleBindEntity2(doubleBindEntity2);
 
         //跳转到ObservableXX
-        startActivity(new Intent(this, ObservableActivity.class));
+//        startActivity(new Intent(this, ObservableActivity.class));
+        //跳转到MvvmActivity
+        startActivity(new Intent(this, MvvmActivity.class));
     }
 
     @Override
