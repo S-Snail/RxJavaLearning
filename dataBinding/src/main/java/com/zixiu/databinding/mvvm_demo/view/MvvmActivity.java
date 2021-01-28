@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.zixiu.databinding.R;
 import com.zixiu.databinding.databinding.ActivityMvvmBinding;
 import com.zixiu.databinding.mvvm_demo.model.MvvmEntity;
+import com.zixiu.databinding.mvvm_demo.model.MvvmModelImpl;
 import com.zixiu.databinding.mvvm_demo.view.adapter.MvvmListAdapter;
 import com.zixiu.databinding.mvvm_demo.viewmodel.MvvmViewModel;
 
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 public class MvvmActivity extends AppCompatActivity {
 
@@ -23,11 +25,12 @@ public class MvvmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMvvmBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_mvvm);
-        MvvmViewModel viewModel = new MvvmViewModel();
+
+        MvvmViewModel viewModel = new ViewModelProvider.NewInstanceFactory().create(MvvmViewModel.class);
+
         MutableLiveData<MvvmEntity> liveData = viewModel.getLiveData();
         viewModel.getDataFromNet();
         liveData.observe(this, binding::setMvvmEntity);
-
 
         //实现列表功能
         ArrayList<MvvmEntity> mvvmEntities = new ArrayList<>();
