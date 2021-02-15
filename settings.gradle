@@ -1,4 +1,6 @@
+include ':serialization'
 include ':dataBinding'
 include ':rxjavabase'
 include ':app'
+include ':jsonlib'
 rootProject.name = "RxJavaLearning"
